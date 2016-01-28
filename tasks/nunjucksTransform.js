@@ -18,7 +18,7 @@ module.exports = function (options) {
 
     try {
       //options.name = typeof options.name === 'function' && options.name(file) || file.relative;
-      nunjucks.configure(file.base);
+      nunjucks.configure(file.base, {watch: false});
       file.contents = new Buffer(nunjucks.renderString(file.contents.toString(), options));
     } catch (err) {
       this.emit('error', new Error('nunjucksTransform : error with ' + file.path, err));
